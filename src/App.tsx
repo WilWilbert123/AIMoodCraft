@@ -69,6 +69,10 @@ function App() {
   // Load journal entries from Supabase on app startup
   useEffect(() => {
     const loadEntries = async () => {
+      if (!supabase) {
+        return;
+      }
+
       const { data, error } = await supabase
         .from('journal_entries')
         .select('*')
