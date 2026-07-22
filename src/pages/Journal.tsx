@@ -169,26 +169,29 @@ export const Journal: React.FC = () => {
   );
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Journal</h1>
+    <div className="space-y-4">
+      <div className="flex flex-col gap-3 rounded-[24px] border border-white/60 bg-white/70 p-4 shadow-[0_20px_60px_-24px_rgba(15,23,42,0.24)] backdrop-blur-2xl dark:border-white/10 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+        <div>
+          <p className="text-xs font-medium uppercase tracking-[0.24em] text-violet-500">Capture your mood</p>
+          <h1 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">Journal</h1>
+        </div>
         <Button onClick={() => {
           setEditingEntry(null);
           setShowForm(!showForm);
         }}>
-          <Plus size={20} />
+          <Plus size={18} />
           {showForm ? 'Cancel' : 'New Entry'}
         </Button>
       </div>
 
       {dbError && (
-        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-700 dark:bg-red-950 dark:text-red-200">
+        <div className="rounded-2xl border border-red-200/80 bg-red-50/80 px-4 py-3 text-sm text-red-700 backdrop-blur dark:border-red-700/70 dark:bg-red-950/70 dark:text-red-200">
           {dbError}
         </div>
       )}
 
       {showForm && (
-        <Card className="border-primary-200">
+        <Card className="border-white/70 p-5" hover>
           <EntryForm
             initialTitle={editingEntry?.title}
             initialContent={editingEntry?.content}
@@ -203,22 +206,22 @@ export const Journal: React.FC = () => {
         </Card>
       )}
 
-      <div className="flex items-center gap-3">
-        <div className="flex-1 relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500" size={20} />
+      <div className="flex items-center gap-3 rounded-[20px] border border-white/70 bg-white/70 p-2.5 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.24)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/70">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" size={18} />
           <input
             type="text"
             placeholder="Search entries..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 dark:placeholder-gray-500"
+            className="w-full rounded-xl border border-slate-200/80 bg-white/80 py-2 pl-10 pr-4 text-slate-900 placeholder:text-slate-400 focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-200 dark:border-slate-700/70 dark:bg-slate-950/70 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:ring-violet-500/20"
           />
         </div>
-        <span className="text-sm text-gray-500 dark:text-gray-400">{filteredEntries.length} entries</span>
+        <span className="text-sm text-slate-500 dark:text-slate-400">{filteredEntries.length} entries</span>
       </div>
 
       {isLoading ? (
-        <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-6 text-center text-sm text-slate-600 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300">
+        <div className="rounded-[24px] border border-slate-200/70 bg-slate-50/70 px-4 py-6 text-center text-sm text-slate-600 backdrop-blur dark:border-slate-700/70 dark:bg-slate-950/70 dark:text-slate-300">
           Loading entries...
         </div>
       ) : (

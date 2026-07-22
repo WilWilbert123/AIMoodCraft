@@ -70,55 +70,37 @@ export const EntryForm: React.FC<EntryFormProps> = ({
           />
         </div>
         {onCancel && (
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={onCancel}
-            className="mt-6"
-          >
-            <X size={20} />
+          <Button type="button" variant="ghost" size="sm" onClick={onCancel} className="mt-6">
+            <X size={18} />
           </Button>
         )}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-200">
+        <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">
           How are you feeling?
         </label>
-        <MoodSelector
-          selectedMood={selectedMood}
-          onSelectMood={setSelectedMood}
-        />
+        <MoodSelector selectedMood={selectedMood} onSelectMood={setSelectedMood} />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-200">
+        <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">
           Journal Entry
         </label>
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Write your thoughts here..."
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 min-h-[150px] resize-y dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 dark:placeholder-gray-500"
+          className="min-h-[160px] w-full resize-y rounded-[20px] border border-slate-200/80 bg-white/80 px-4 py-3 text-slate-900 placeholder:text-slate-400 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.32)] transition-all duration-200 focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-200 dark:border-slate-700/70 dark:bg-slate-900/70 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:ring-violet-500/20"
         />
       </div>
 
-      <div className="flex gap-3">
-        <Button
-          type="submit"
-          variant="primary"
-          isLoading={isSubmitting}
-          fullWidth
-        >
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <Button type="submit" variant="primary" isLoading={isSubmitting} fullWidth>
           {isEditing ? 'Update Entry' : 'Save Entry'}
         </Button>
         {onCancel && (
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={onCancel}
-          >
+          <Button type="button" variant="secondary" onClick={onCancel}>
             Cancel
           </Button>
         )}

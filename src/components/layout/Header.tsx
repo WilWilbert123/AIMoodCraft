@@ -16,42 +16,33 @@ export const Header: React.FC<HeaderProps> = ({ isDark = false, onToggleTheme })
   };
 
   return (
-    <header className="bg-white/90 border-b border-gray-200/80 sticky top-0 z-50 backdrop-blur-sm transition-colors duration-300 dark:bg-gray-900/90 dark:border-gray-800">
+    <header className="sticky top-0 z-50 border-b border-white/60 bg-white/70 px-3 py-3 backdrop-blur-2xl dark:border-slate-800/80 dark:bg-slate-950/85 sm:px-0">
       <div className="container-custom">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between rounded-full border border-white/60 bg-white/70 px-3 py-2 shadow-[0_20px_60px_-24px_rgba(15,23,42,0.24)] backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-950/80">
           <div className="flex items-center gap-2">
-            <Brain className="w-8 h-8 text-primary-500" />
-            <span className="text-xl font-bold text-gray-900 dark:text-gray-100">AI MoodCraft</span>
+            <div className="rounded-full bg-gradient-to-br from-violet-500 to-cyan-400 p-2 shadow-lg shadow-violet-500/20">
+              <Brain className="h-5 w-5 text-white" />
+            </div>
+            <span className="text-base font-semibold tracking-tight text-slate-900 dark:text-slate-100">AI MoodCraft</span>
           </div>
 
-          <nav className="hidden md:flex items-center gap-6">
-            <Link to="/" className="text-gray-600 hover:text-gray-900 transition-colors dark:text-gray-300 dark:hover:text-white">Dashboard</Link>
-            <Link to="/journal" className="text-gray-600 hover:text-gray-900 transition-colors dark:text-gray-300 dark:hover:text-white">Journal</Link>
-            <Link to="/insights" className="text-gray-600 hover:text-gray-900 transition-colors dark:text-gray-300 dark:hover:text-white">Insights</Link>
+          <nav className="hidden items-center gap-6 md:flex">
+            <Link to="/" className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-white">Dashboard</Link>
+            <Link to="/journal" className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-white">Journal</Link>
+            <Link to="/insights" className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-white">Insights</Link>
           </nav>
 
           <div className="flex items-center gap-2">
             {onToggleTheme && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={onToggleTheme}
-                className="hidden md:inline-flex"
-              >
-                {isDark ? <Sun size={20} /> : <Moon size={20} />}
+              <Button variant="ghost" size="sm" onClick={onToggleTheme} className="hidden md:inline-flex">
+                {isDark ? <Sun size={18} /> : <Moon size={18} />}
               </Button>
             )}
-            <Button
-              variant="primary"
-              size="sm"
-              type="button"
-              onClick={handleNewEntry}
-              className="border border-primary-600/20 bg-primary-600 !text-gray-950 shadow-sm hover:bg-primary-700 dark:border-primary-400/30 dark:bg-primary-500 dark:!text-white dark:hover:bg-primary-400"
-            >
+            <Button variant="primary" size="sm" type="button" onClick={handleNewEntry}>
               New Entry
             </Button>
             <Button variant="ghost" size="sm" className="md:hidden">
-              <Menu size={20} />
+              <Menu size={18} />
             </Button>
           </div>
         </div>

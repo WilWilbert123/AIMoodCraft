@@ -21,7 +21,7 @@ export const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <div className={`bg-white rounded-xl shadow-sm border border-gray-100 transition-colors duration-300 dark:bg-gray-900 dark:border-gray-800 ${paddingStyles[padding]} ${hover ? 'card-hover' : ''} ${className}`}>
+    <div className={`glass-panel ${paddingStyles[padding]} ${hover ? 'card-hover' : ''} ${className}`}>
       {children}
     </div>
   );

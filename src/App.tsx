@@ -91,9 +91,13 @@ function App() {
 
   return (
     <Router>
-      <div className="relative min-h-screen flex flex-col bg-gray-50 transition-colors duration-300 dark:bg-gray-950">
+      <div className="relative flex min-h-screen flex-col overflow-hidden bg-transparent transition-colors duration-300 dark:bg-slate-950">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute left-[-8%] top-[-10%] h-72 w-72 rounded-full bg-violet-400/20 blur-3xl" />
+          <div className="absolute bottom-[-5%] right-[-6%] h-80 w-80 rounded-full bg-cyan-400/20 blur-3xl" />
+        </div>
         <Header isDark={isDark} onToggleTheme={() => setIsDark((value) => !value)} />
-        <main className="flex-1 container-custom py-8 relative z-10">
+        <main className="relative z-10 flex-1 container-custom py-8 sm:py-10">
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/journal" element={<Journal />} />
