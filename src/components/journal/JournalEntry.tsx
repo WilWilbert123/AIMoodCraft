@@ -22,65 +22,48 @@ export const JournalEntry: React.FC<JournalEntryProps> = ({ entry, onEdit, onDel
     : `${entry.content.slice(0, 200)}...`;
 
   return (
-    <Card className="hover:shadow-md transition-all duration-300">
+    <Card className="w-full transition-all duration-300 hover:shadow-[0_20px_60px_-24px_rgba(15,23,42,0.24)]" hover>
       <div className="flex items-start justify-between gap-4">
-        <div className="flex-1">
-          <div className="flex items-center gap-3 mb-2">
-            <span className="text-2xl">{moodConfig.emoji}</span>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{entry.title}</h3>
-            <span className="text-xs px-2 py-1 bg-gray-100 rounded-full text-gray-600 capitalize dark:bg-gray-800 dark:text-gray-300">
+        <div className="min-w-0 flex-1">
+          <div className="mb-2 flex items-center gap-3">
+            <span className="rounded-2xl bg-slate-100/80 p-2 text-2xl shadow-sm dark:bg-slate-800/70">{moodConfig.emoji}</span>
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">{entry.title}</h3>
+            <span className="rounded-full bg-slate-100/80 px-2.5 py-1 text-xs font-medium capitalize text-slate-600 dark:bg-slate-800/70 dark:text-slate-300">
               {entry.mood}
             </span>
           </div>
 
-          <p className="text-gray-700 leading-relaxed whitespace-pre-wrap dark:text-gray-300">
+          <p className="whitespace-pre-wrap leading-relaxed text-slate-700 dark:text-slate-300">
             {displayContent}
           </p>
-          
+
           {shouldTruncate && (
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="text-primary-500 hover:text-primary-600 text-sm font-medium mt-2"
-            >
+            <button onClick={() => setIsExpanded(!isExpanded)} className="mt-2 text-sm font-medium text-violet-500 transition-colors hover:text-violet-600">
               {isExpanded ? 'Show less' : 'Read more'}
             </button>
           )}
-          
-          <div className="flex items-center gap-4 mt-4 text-sm text-gray-500 dark:text-gray-400">
+
+          <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
             <span className="flex items-center gap-1">
               <Calendar size={14} />
               {format(new Date(entry.createdAt), 'MMM d, yyyy')}
             </span>
             {entry.sentiment && (
-              <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-                entry.sentiment.label === 'positive' ? 'bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-300' :
-                entry.sentiment.label === 'negative' ? 'bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300' :
-                'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
-              }`}>
+              <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${entry.sentiment.label === 'positive' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300' : entry.sentiment.label === 'negative' ? 'bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300' : 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'}`}>
                 {entry.sentiment.label}
               </span>
             )}
           </div>
         </div>
-        
-        <div className="flex gap-2 flex-shrink-0">
+
+        <div className="flex flex-shrink-0 gap-2">
           {onEdit && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => onEdit(entry.id)}
-              className="text-gray-500 hover:text-primary-500"
-            >
+            <Button variant="ghost" size="sm" onClick={() => onEdit(entry.id)} className="text-slate-500 hover:text-violet-500">
               <Pencil size={16} />
             </Button>
           )}
           {onDelete && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => onDelete(entry.id)}
-              className="text-gray-500 hover:text-red-500"
-            >
+            <Button variant="ghost" size="sm" onClick={() => onDelete(entry.id)} className="text-slate-500 hover:text-rose-500">
               <Trash2 size={16} />
             </Button>
           )}

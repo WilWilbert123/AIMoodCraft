@@ -42,26 +42,26 @@ export const AIInsights: React.FC<AIInsightsProps> = ({ entries, onRefresh }) =>
   const getPriorityColor = (priority: string = 'medium') => {
     switch (priority) {
       case 'high':
-        return 'border-red-200 bg-red-50';
+        return 'border-red-200/80 bg-red-50/80 dark:border-red-900/70 dark:bg-red-950/70';
       case 'medium':
-        return 'border-yellow-200 bg-yellow-50';
+        return 'border-amber-200/80 bg-amber-50/80 dark:border-amber-900/70 dark:bg-amber-950/70';
       default:
-        return 'border-blue-200 bg-blue-50';
+        return 'border-sky-200/80 bg-sky-50/80 dark:border-sky-900/70 dark:bg-sky-950/70';
     }
   };
 
   if (isProcessing) {
     return (
       <Card className="p-8 text-center">
-        <Loader2 className="animate-spin mx-auto mb-3 text-primary-500" size={32} />
-        <p className="text-gray-600 dark:text-gray-300">Generating AI insights...</p>
+        <Loader2 className="mx-auto mb-3 animate-spin text-violet-500" size={32} />
+        <p className="text-slate-600 dark:text-slate-300">Generating AI insights...</p>
       </Card>
     );
   }
 
   if (error) {
     return (
-      <Card className="p-4 border-red-200 bg-red-50">
+      <Card className="border-red-200/80 bg-red-50/80 p-4">
         <p className="text-red-700">Error: {error}</p>
       </Card>
     );
@@ -70,8 +70,8 @@ export const AIInsights: React.FC<AIInsightsProps> = ({ entries, onRefresh }) =>
   if (insights.length === 0) {
     return (
       <Card className="p-8 text-center">
-        <Brain className="mx-auto mb-3 text-gray-400" size={32} />
-        <p className="text-gray-600 dark:text-gray-300">No insights yet. Keep journaling!</p>
+        <Brain className="mx-auto mb-3 text-slate-400" size={32} />
+        <p className="text-slate-600 dark:text-slate-300">No insights yet. Keep journaling!</p>
       </Card>
     );
   }
@@ -79,24 +79,21 @@ export const AIInsights: React.FC<AIInsightsProps> = ({ entries, onRefresh }) =>
   return (
     <div className="space-y-3">
       {insights.map((insight) => (
-        <Card
-          key={insight.id}
-          className={`p-4 border ${getPriorityColor(insight.priority)} animate-fade-in`}
-        >
+        <Card key={insight.id} className={`animate-fade-in border ${getPriorityColor(insight.priority)} p-4`}>
           <div className="flex items-start gap-3">
             {getIcon(insight.type)}
             <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">
+              <div className="mb-1 flex items-center gap-2">
+                <span className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   {insight.type}
                 </span>
                 {insight.priority === 'high' && (
-                  <span className="text-xs px-2 py-0.5 bg-red-100 text-red-700 rounded-full">
+                  <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/70 dark:text-red-300">
                     Important
                   </span>
                 )}
               </div>
-              <p className="text-gray-800 dark:text-gray-200">{insight.content}</p>
+              <p className="text-slate-800 dark:text-slate-200">{insight.content}</p>
             </div>
           </div>
         </Card>
