@@ -61,6 +61,12 @@ export const Journal: React.FC = () => {
       setIsLoading(true);
       setDbError(null);
 
+      if (!supabase) {
+        setDbError('Supabase is not configured for persistence.');
+        setIsLoading(false);
+        return;
+      }
+
       const { data, error } = await supabase
         .from('journal_entries')
         .select('*')
@@ -79,6 +85,11 @@ export const Journal: React.FC = () => {
   }, [setEntries]);
 
   const handleSubmit = async (title: string, content: string, mood: JournalEntry['mood']) => {
+    if (!supabase) {
+      setDbError('Supabase is not configured for persistence.');
+      return;
+    }
+
     if (editingEntry) {
       const { data, error } = await supabase
         .from('journal_entries')
@@ -151,6 +162,11 @@ export const Journal: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this entry?')) {
+      return;
+    }
+
+    if (!supabase) {
+      setDbError('Supabase is not configured for persistence.');
       return;
     }
 
