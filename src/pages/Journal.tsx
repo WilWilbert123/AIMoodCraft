@@ -9,6 +9,7 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Plus, Search } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { getDeviceId } from '@/lib/deviceId';
 
 type SupabaseJournalRow = {
   id: string;
@@ -67,9 +68,11 @@ export const Journal: React.FC = () => {
         return;
       }
 
+      const deviceId = getDeviceId();
       const { data, error } = await supabase
         .from('journal_entries')
         .select('*')
+        .eq('device_id', deviceId)
         .order('created_at', { ascending: false });
 
       if (error) {
@@ -91,10 +94,12 @@ export const Journal: React.FC = () => {
     }
 
     if (editingEntry) {
+      const deviceId = getDeviceId();
       const { data, error } = await supabase
         .from('journal_entries')
         .update({ title, content, mood, updated_at: new Date().toISOString() })
         .eq('id', editingEntry.id)
+        .eq('device_id', deviceId)
         .select()
         .single();
 
@@ -127,6 +132,7 @@ export const Journal: React.FC = () => {
         title: title || 'Untitled',
         content,
         mood,
+        device_id: getDeviceId(),
       };
 
       const { data, error } = await supabase
@@ -170,7 +176,11 @@ export const Journal: React.FC = () => {
       return;
     }
 
-    const { error } = await supabase.from('journal_entries').delete().eq('id', id);
+    const { error } = await supabase
+      .from('journal_entries')
+      .delete()
+      .eq('id', id)
+      .eq('device_id', getDeviceId());
     if (error) {
       alert(`Failed to delete entry: ${error.message}`);
       return;
