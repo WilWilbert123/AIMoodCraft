@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Brain, Sun, Moon, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { VisitCounter } from './VisitCounter';
 
 interface HeaderProps {
   isDark?: boolean;
@@ -37,6 +38,7 @@ export const Header: React.FC<HeaderProps> = ({ isDark = false, onToggleTheme })
           </nav>
 
           <div className="flex items-center gap-2">
+            <VisitCounter />
             {onToggleTheme && (
               <Button variant="ghost" size="sm" onClick={onToggleTheme} className="hidden md:inline-flex">
                 {isDark ? <Sun size={18} /> : <Moon size={18} />}
