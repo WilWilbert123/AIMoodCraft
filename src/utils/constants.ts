@@ -12,14 +12,14 @@ export const MOODS = {
 } as const;
 
 export const MOOD_CONFIG: Record<Mood, { color: string; emoji: string; label: string }> = {
-  happy: { color: '#4CAF50', emoji: '😊', label: 'Happy' },
-  sad: { color: '#2196F3', emoji: '😢', label: 'Sad' },
-  angry: { color: '#F44336', emoji: '😡', label: 'Angry' },
-  anxious: { color: '#FF9800', emoji: '😰', label: 'Anxious' },
-  calm: { color: '#9C27B0', emoji: '😌', label: 'Calm' },
-  neutral: { color: '#9E9E9E', emoji: '😐', label: 'Neutral' },
-  excited: { color: '#FF6B6B', emoji: '🤩', label: 'Excited' },
-  tired: { color: '#795548', emoji: '😴', label: 'Tired' }
+  happy: { color: '#171717', emoji: '😊', label: 'Happy' },
+  sad: { color: '#404040', emoji: '😢', label: 'Sad' },
+  angry: { color: '#262626', emoji: '😡', label: 'Angry' },
+  anxious: { color: '#525252', emoji: '😰', label: 'Anxious' },
+  calm: { color: '#737373', emoji: '😌', label: 'Calm' },
+  neutral: { color: '#A3A3A3', emoji: '😐', label: 'Neutral' },
+  excited: { color: '#0A0A0A', emoji: '🤩', label: 'Excited' },
+  tired: { color: '#666666', emoji: '😴', label: 'Tired' }
 };
 
 export const MOOD_OPTIONS = Object.entries(MOOD_CONFIG).map(([key, value]) => ({

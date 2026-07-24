@@ -24,16 +24,16 @@ export const Header: React.FC<HeaderProps> = ({ isDark = false, onToggleTheme })
       <div className="container-custom">
         <div className="relative flex items-center justify-between rounded-full border border-white/60 bg-white/70 px-3 py-2 shadow-[0_20px_60px_-24px_rgba(15,23,42,0.24)] backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-950/80">
           <div className="flex items-center gap-2">
-            <div className="rounded-full bg-gradient-to-br from-violet-500 to-cyan-400 p-2 shadow-lg shadow-violet-500/20">
-              <Brain className="h-5 w-5 text-white" />
+            <div className="rounded-full border border-black/10 bg-white p-2 shadow-lg shadow-black/10 dark:border-white/10 dark:bg-neutral-950">
+              <Brain className="h-5 w-5 text-neutral-950 dark:text-white" />
             </div>
-            <span className="text-base font-semibold tracking-tight text-slate-900 dark:text-slate-100">AI MoodCraft</span>
+            <span className="text-base font-semibold tracking-tight text-neutral-950 dark:text-white">AI MoodCraft</span>
           </div>
 
           <nav className="hidden items-center gap-6 md:flex">
-            <Link to="/" className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-white">Dashboard</Link>
-            <Link to="/journal" className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-white">Journal</Link>
-            <Link to="/insights" className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-white">Insights</Link>
+            <Link to="/" className="text-sm font-medium text-neutral-700 transition-colors hover:text-black dark:text-neutral-300 dark:hover:text-white">Dashboard</Link>
+            <Link to="/journal" className="text-sm font-medium text-neutral-700 transition-colors hover:text-black dark:text-neutral-300 dark:hover:text-white">Journal</Link>
+            <Link to="/insights" className="text-sm font-medium text-neutral-700 transition-colors hover:text-black dark:text-neutral-300 dark:hover:text-white">Insights</Link>
           </nav>
 
           <div className="flex items-center gap-2">
