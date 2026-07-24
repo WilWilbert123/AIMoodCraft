@@ -23,16 +23,16 @@ export const Dashboard: React.FC = () => {
 
   return (
     <div className="space-y-6 sm:space-y-8">
-      <section className="relative overflow-hidden rounded-[32px] border border-violet-200/70 bg-gradient-to-br from-violet-600 via-violet-600 to-cyan-500 p-6 text-white shadow-[0_28px_80px_-28px_rgba(109,40,217,0.7)] sm:p-8">
-        <div className="pointer-events-none absolute -right-12 -top-16 h-56 w-56 rounded-full bg-white/15 blur-2xl" />
-        <div className="pointer-events-none absolute -bottom-20 left-1/3 h-48 w-48 rounded-full bg-cyan-200/25 blur-3xl" />
+      <section className="relative overflow-hidden rounded-[32px] border border-black/10 bg-white p-6 text-neutral-950 shadow-[0_28px_80px_-28px_rgba(0,0,0,0.28)] dark:border-white/10 dark:bg-neutral-950 dark:text-white sm:p-8">
+        <div className="pointer-events-none absolute -right-12 -top-16 h-56 w-56 rounded-full bg-black/[0.035] blur-2xl dark:bg-white/[0.07]" />
+        <div className="pointer-events-none absolute -bottom-20 left-1/3 h-48 w-48 rounded-full bg-black/[0.025] blur-3xl dark:bg-white/[0.04]" />
         <div className="relative max-w-2xl">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em]">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.045] px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] dark:border-white/15 dark:bg-white/10">
             Your private reflection space
           </div>
-          <p className="text-sm font-medium text-violet-100">Today’s check-in</p>
-          <h1 className="mt-1 text-3xl font-semibold tracking-tight sm:text-4xl">How are you feeling today?</h1>
-          <p className="mt-3 max-w-xl text-sm leading-6 text-violet-100 sm:text-base">Choose a feeling to begin a thoughtful entry. Every small check-in helps reveal your bigger picture.</p>
+          <p className="text-sm font-medium text-neutral-700 dark:text-white/75">Today’s check-in</p>
+          <h1 className="mt-1 text-3xl font-semibold tracking-tight text-neutral-950 dark:text-white sm:text-4xl">How are you feeling today?</h1>
+          <p className="mt-3 max-w-xl text-sm leading-6 text-neutral-700 dark:text-white/75 sm:text-base">Choose a feeling to begin a thoughtful entry. Every small check-in helps reveal your bigger picture.</p>
 
           <div className="mt-6 grid grid-cols-4 gap-2 sm:flex sm:flex-wrap">
             {MOOD_OPTIONS.map((mood) => (
@@ -40,7 +40,7 @@ export const Dashboard: React.FC = () => {
                 key={mood.value}
                 type="button"
                 onClick={() => navigate(`/journal?new=1&mood=${mood.value}`)}
-                className="group flex min-h-12 flex-col items-center justify-center rounded-2xl border border-white/15 bg-white/10 px-2 py-2 text-white transition duration-200 hover:-translate-y-0.5 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-violet-600 sm:min-w-16"
+                className="group flex min-h-12 flex-col items-center justify-center rounded-2xl border border-black/10 bg-black/[0.045] px-2 py-2 text-neutral-950 transition duration-200 hover:-translate-y-0.5 hover:bg-black/[0.09] focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-white dark:border-white/15 dark:bg-white/10 dark:text-white dark:hover:bg-white/20 dark:focus:ring-white dark:focus:ring-offset-neutral-950 sm:min-w-16"
                 aria-label={`Start a ${mood.label.toLowerCase()} journal entry`}
               >
                 <span className="text-xl transition-transform duration-200 group-hover:scale-110">{mood.emoji}</span>
