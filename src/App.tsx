@@ -9,6 +9,7 @@ import { Footer } from './components/layout/Footer';
 import { useJournalStore } from './store/journalStore';
 import { useMoodStore } from './store/moodStore';
 import { supabase } from './lib/supabase';
+import { getDeviceId } from './lib/deviceId';
 import { JournalEntry, Mood } from './types';
 
 const moodValueMap: Record<Mood, number> = {
@@ -73,9 +74,11 @@ function App() {
         return;
       }
 
+      const deviceId = getDeviceId();
       const { data, error } = await supabase
         .from('journal_entries')
         .select('*')
+        .eq('device_id', deviceId)
         .order('created_at', { ascending: false });
 
       if (!error && data) {
