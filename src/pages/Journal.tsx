@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/Button';
 import { Plus, Search } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { getDeviceId } from '@/lib/deviceId';
+import { MOOD_CONFIG } from '@/utils/constants';
 
 type SupabaseJournalRow = {
   id: string;
@@ -45,6 +46,7 @@ export const Journal: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [showForm, setShowForm] = useState(false);
   const [editingEntry, setEditingEntry] = useState<JournalEntry | null>(null);
+  const [newEntryMood, setNewEntryMood] = useState<Mood | undefined>();
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [dbError, setDbError] = useState<string | null>(null);
@@ -52,6 +54,8 @@ export const Journal: React.FC = () => {
   useEffect(() => {
     if (searchParams.get('new') === '1') {
       setEditingEntry(null);
+      const requestedMood = searchParams.get('mood') as Mood | null;
+      setNewEntryMood(requestedMood && requestedMood in MOOD_CONFIG ? requestedMood : undefined);
       setShowForm(true);
       setSearchParams({}, { replace: true });
     }
@@ -195,7 +199,7 @@ export const Journal: React.FC = () => {
   );
 
   return (
-    <div className="space-y-4">
+    <div className="w-full max-w-none space-y-5">
       <div className="flex flex-col gap-3 rounded-[24px] border border-white/60 bg-white/70 p-4 shadow-[0_20px_60px_-24px_rgba(15,23,42,0.24)] backdrop-blur-2xl dark:border-white/10 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between sm:p-5">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.24em] text-violet-500">Capture your mood</p>
@@ -203,6 +207,7 @@ export const Journal: React.FC = () => {
         </div>
         <Button onClick={() => {
           setEditingEntry(null);
+          setNewEntryMood(undefined);
           setShowForm(!showForm);
         }}>
           <Plus size={18} />
@@ -221,18 +226,19 @@ export const Journal: React.FC = () => {
           <EntryForm
             initialTitle={editingEntry?.title}
             initialContent={editingEntry?.content}
-            initialMood={editingEntry?.mood}
+            initialMood={editingEntry?.mood ?? newEntryMood}
             onSubmit={handleSubmit}
             onCancel={() => {
               setShowForm(false);
               setEditingEntry(null);
+              setNewEntryMood(undefined);
             }}
             isEditing={!!editingEntry}
           />
         </Card>
       )}
 
-      <div className="flex items-center gap-3 rounded-[20px] border border-white/70 bg-white/70 p-2.5 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.24)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/70">
+      <div className="flex w-full items-center gap-3 rounded-[20px] border border-white/70 bg-white/70 p-2.5 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.24)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/70">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" size={18} />
           <input
