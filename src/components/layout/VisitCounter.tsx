@@ -31,12 +31,12 @@ export const VisitCounter = () => {
 
   return (
     <span
-      className="hidden min-h-9 items-center gap-1.5 rounded-full border border-black/10 bg-white px-3 text-xs font-semibold tabular-nums text-neutral-950 shadow-sm dark:border-white/10 dark:bg-neutral-950 dark:text-white sm:inline-flex"
+      className="inline-flex min-h-9 w-9 items-center justify-center gap-1.5 rounded-full border border-black/10 bg-white px-2 text-xs font-semibold tabular-nums text-neutral-950 shadow-sm dark:border-white/10 dark:bg-neutral-950 dark:text-white min-[390px]:w-auto min-[390px]:px-3"
       title={`${visitCount.toLocaleString()} total site visits`}
       aria-label={`${visitCount.toLocaleString()} total site visits`}
     >
       <Eye size={15} aria-hidden="true" />
-      {visitCount.toLocaleString()}
+      <span className="hidden min-[390px]:inline">{visitCount.toLocaleString()}</span>
     </span>
   );
 };
