@@ -8,12 +8,26 @@ import { AIInsights } from '@/components/ai/AIInsights';
 import { getUserStats } from '@/utils/moodCalculator';
 import { MOOD_OPTIONS } from '@/utils/constants';
 import { BookOpen, TrendingUp, CalendarDays, ArrowRight } from 'lucide-react';
+import { format, isSameDay, subDays } from 'date-fns';
 
 export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const { entries } = useJournalStore();
   const { moodHistory } = useMoodStore();
   const stats = getUserStats(moodHistory, entries);
+  const weekStart = subDays(new Date(), 6);
+  const weekEntries = entries.filter((entry) => new Date(entry.createdAt) >= weekStart);
+  const weekMoodCounts = weekEntries.reduce<Record<string, number>>((counts, entry) => {
+    counts[entry.mood] = (counts[entry.mood] ?? 0) + 1;
+    return counts;
+  }, {});
+  const weekMood = Object.entries(weekMoodCounts).sort(([, first], [, second]) => second - first)[0]?.[0];
+  const weekMoodOption = MOOD_OPTIONS.find((mood) => mood.value === weekMood);
+  const weekDays = Array.from({ length: 7 }, (_, index) => {
+    const date = subDays(new Date(), 6 - index);
+    const entry = entries.find((item) => isSameDay(new Date(item.createdAt), date));
+    return { date, entry };
+  });
 
   const statCards = [
     { icon: <BookOpen size={18} />, label: 'Journal entries', value: stats.totalEntries, accent: 'text-violet-600 bg-violet-100/80 dark:bg-violet-500/15 dark:text-violet-300' },
@@ -86,6 +100,35 @@ export const Dashboard: React.FC = () => {
           </div>
           <AIInsights entries={entries} />
         </Card>
+      </section>
+
+      <section className="overflow-hidden rounded-[32px] border border-black/10 bg-white p-5 shadow-[0_24px_70px_-30px_rgba(0,0,0,0.22)] dark:border-white/10 dark:bg-neutral-950 sm:p-7">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-600 dark:text-neutral-300">Your week in review</p>
+            <h2 className="mt-1 text-2xl font-semibold tracking-tight text-neutral-950 dark:text-white">Small moments, clearer patterns.</h2>
+            <p className="mt-2 max-w-xl text-sm leading-6 text-neutral-600 dark:text-neutral-300">
+              {weekEntries.length === 0
+                ? 'Start with one check-in today and your weekly rhythm will begin to take shape.'
+                : `You captured ${weekEntries.length} ${weekEntries.length === 1 ? 'moment' : 'moments'} this week${weekMoodOption ? `, with ${weekMoodOption.label.toLowerCase()} appearing most often` : ''}.`}
+            </p>
+          </div>
+          <button type="button" onClick={() => navigate('/insights')} className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-xl border border-black/10 bg-neutral-950 px-4 text-sm font-semibold text-white transition hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 dark:border-white/15 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 dark:focus:ring-white dark:focus:ring-offset-neutral-950">
+            Explore insights <ArrowRight size={16} />
+          </button>
+        </div>
+
+        <div className="mt-7 grid grid-cols-7 gap-2 border-t border-black/10 pt-5 dark:border-white/10 sm:gap-3">
+          {weekDays.map(({ date, entry }) => (
+            <div key={date.toISOString()} className="min-w-0 text-center">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-neutral-500 dark:text-neutral-400">{format(date, 'EEE')}</p>
+              <div className={`mx-auto mt-2 grid h-10 w-10 place-items-center rounded-2xl border text-lg sm:h-12 sm:w-12 sm:text-xl ${entry ? 'border-black/10 bg-neutral-100 dark:border-white/10 dark:bg-neutral-900' : 'border-dashed border-neutral-300 bg-neutral-50 text-neutral-400 dark:border-neutral-700 dark:bg-neutral-900/40 dark:text-neutral-600'}`} title={entry ? `${entry.mood} entry` : 'No entry'}>
+                {entry ? MOOD_OPTIONS.find((mood) => mood.value === entry.mood)?.emoji : '—'}
+              </div>
+              <p className="mt-2 truncate text-[11px] font-medium text-neutral-600 dark:text-neutral-300">{format(date, 'd')}</p>
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );
