@@ -28,6 +28,7 @@ export const MoodSelector: React.FC<MoodSelectorProps> = ({
         return (
           <button
             key={key}
+            type="button"
             onClick={() => onSelectMood(key as Mood)}
             className={`
               ${sizeClasses[size]}
