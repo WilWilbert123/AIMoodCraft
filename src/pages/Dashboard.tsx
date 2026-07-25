@@ -7,7 +7,7 @@ import { MoodTimeline } from '@/components/mood/MoodTimeline';
 import { AIInsights } from '@/components/ai/AIInsights';
 import { getUserStats } from '@/utils/moodCalculator';
 import { MOOD_OPTIONS } from '@/utils/constants';
-import { BookOpen, TrendingUp, CalendarDays, ArrowRight, Sparkles, Activity } from 'lucide-react';
+import { BookOpen, TrendingUp, CalendarDays, ArrowRight, Activity } from 'lucide-react';
 import { format, isSameDay, subDays } from 'date-fns';
 
 export const Dashboard: React.FC = () => {
@@ -99,7 +99,7 @@ export const Dashboard: React.FC = () => {
         <div className="pointer-events-none absolute -bottom-20 left-1/3 h-48 w-48 rounded-full bg-cyan-500/10 blur-3xl dark:bg-cyan-500/15" />
         <div className="relative max-w-2xl">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-200/80 bg-violet-50/80 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-violet-700 dark:border-violet-500/30 dark:bg-violet-500/10 dark:text-violet-300">
-            <Sparkles size={14} className="text-violet-500" /> Your private reflection space
+             Your private reflection space
           </div>
           <p className="text-sm font-medium text-neutral-600 dark:text-white/75">Today’s check-in</p>
           <h1 className="mt-1 text-3xl font-semibold tracking-tight text-neutral-950 dark:text-white sm:text-4xl">How are you feeling today?</h1>
