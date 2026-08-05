@@ -1,7 +1,6 @@
 import React from 'react';
 import { JournalEntry as JournalEntryType } from '@/types';
 import { JournalEntry } from './JournalEntry';
-import { Card } from '@/components/ui/Card';
 import { PenLine } from 'lucide-react';
 
 interface EntryListProps {
@@ -10,6 +9,7 @@ interface EntryListProps {
   onDelete?: (id: string) => void;
   emptyMessage?: string;
 }
+
 
 export const EntryList: React.FC<EntryListProps> = ({
   entries,

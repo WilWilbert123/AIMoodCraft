@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Mood } from '@/types';
 import { MoodSelector } from '@/components/mood/MoodSelector';
 import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
 import { X } from 'lucide-react';
 import { MOOD_CONFIG } from '@/utils/constants';
 
