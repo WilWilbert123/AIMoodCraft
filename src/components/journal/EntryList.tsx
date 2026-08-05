@@ -10,6 +10,7 @@ interface EntryListProps {
   emptyMessage?: string;
 }
 
+
 export const EntryList: React.FC<EntryListProps> = ({
   entries,
   onEdit,
