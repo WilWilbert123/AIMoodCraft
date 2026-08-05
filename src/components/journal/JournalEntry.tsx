@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { format } from 'date-fns';
 import { JournalEntry as JournalEntryType } from '@/types';
 import { MOOD_CONFIG } from '@/utils/constants';
-import { Card } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
 import { Pencil, Trash2, Calendar } from 'lucide-react';
 
 interface JournalEntryProps {

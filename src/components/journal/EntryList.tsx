@@ -1,7 +1,6 @@
 import React from 'react';
 import { JournalEntry as JournalEntryType } from '@/types';
 import { JournalEntry } from './JournalEntry';
-import { Card } from '@/components/ui/Card';
 import { PenLine } from 'lucide-react';
 
 interface EntryListProps {
