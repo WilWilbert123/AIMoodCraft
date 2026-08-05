@@ -9,10 +9,7 @@ import { getUserStats } from '@/utils/moodCalculator';
 import { MOOD_OPTIONS } from '@/utils/constants';
 import { BookOpen, TrendingUp, CalendarDays, ArrowRight, Activity, Send, Sparkles, User, Bot } from 'lucide-react';
 import { format, isSameDay, subDays } from 'date-fns';
-import { GoogleGenAI } from '@google/genai';
-
-// Initialize Gemini Client
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
+import { generateAIResponseStream } from '@/utils/geminiClient';
 
 interface Message {
   id: string;
@@ -26,6 +23,7 @@ export const Dashboard: React.FC = () => {
   const { entries } = useJournalStore();
   const { moodHistory } = useMoodStore();
   const stats = getUserStats(moodHistory, entries);
+  const latestMood = entries.length > 0 ? entries[0].mood : null;
 
   const [activePoint, setActivePoint] = useState<number | null>(null);
 
@@ -84,15 +82,7 @@ export const Dashboard: React.FC = () => {
     ]);
 
     try {
-      // Call Gemini 2.5 Flash for fast, conversational responses
-      const responseStream = await ai.models.generateContentStream({
-        model: 'gemini-2.5-flash',
-        contents: history,
-        config: {
-          systemInstruction:
-            "You are a warm, empathetic, and gentle journaling AI assistant. You help users process their emotions, thoughts, physical discomforts, and mental state. Keep your responses concise (1-3 sentences), compassionate, and inquisitive, encouraging thoughtful reflection without sounding robotic or repeating canned lines.",
-        },
-      });
+      const responseStream = await generateAIResponseStream(history, latestMood);
 
       let accumulatedText = '';
       for await (const chunk of responseStream) {

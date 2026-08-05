@@ -199,20 +199,39 @@ export const Journal: React.FC = () => {
   );
 
   return (
-    <div className="w-full max-w-none space-y-5">
-      <div className="flex flex-col gap-3 rounded-[24px] border border-white/60 bg-white/70 p-4 shadow-[0_20px_60px_-24px_rgba(15,23,42,0.24)] backdrop-blur-2xl dark:border-white/10 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between sm:p-5">
-        <div>
-          <p className="text-xs font-medium uppercase tracking-[0.24em] text-violet-500">Capture your mood</p>
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">Journal</h1>
+    <div className="w-full max-w-7xl mx-auto space-y-6 sm:space-y-8">
+      {/* Premium Hero Header */}
+      <div className="relative flex flex-col items-start justify-center overflow-hidden rounded-[32px] border border-black/10 bg-white p-6 shadow-[0_28px_80px_-28px_rgba(0,0,0,0.28)] dark:border-white/10 dark:bg-neutral-950 sm:p-10">
+        <div className="pointer-events-none absolute -right-12 -top-16 h-64 w-64 rounded-full bg-violet-500/15 blur-3xl dark:bg-violet-500/25" />
+        <div className="pointer-events-none absolute -bottom-20 left-1/4 h-56 w-56 rounded-full bg-cyan-500/15 blur-3xl dark:bg-cyan-500/20" />
+        
+        <div className="relative z-10 flex w-full flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-xl">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-200/80 bg-violet-50/80 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-violet-700 dark:border-violet-500/30 dark:bg-violet-500/10 dark:text-violet-300">
+              Capture your mood
+            </div>
+            <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-white sm:text-5xl">
+              Your Reflective Journal
+            </h1>
+            <p className="mt-3 text-sm leading-6 text-neutral-600 dark:text-neutral-300 sm:text-base">
+              A quiet place to untangle your thoughts, track your emotional rhythms, and find clarity.
+            </p>
+          </div>
+          
+          <Button 
+            onClick={() => {
+              setEditingEntry(null);
+              setNewEntryMood(undefined);
+              setShowForm(!showForm);
+            }}
+            className="group relative overflow-hidden shrink-0 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+          >
+            <div className="relative z-10 flex items-center gap-2">
+              <Plus size={18} className="transition-transform group-hover:rotate-90" />
+              {showForm ? 'Cancel Entry' : 'Write New Entry'}
+            </div>
+          </Button>
         </div>
-        <Button onClick={() => {
-          setEditingEntry(null);
-          setNewEntryMood(undefined);
-          setShowForm(!showForm);
-        }}>
-          <Plus size={18} />
-          {showForm ? 'Cancel' : 'New Entry'}
-        </Button>
       </div>
 
       {dbError && (
@@ -238,18 +257,22 @@ export const Journal: React.FC = () => {
         </Card>
       )}
 
-      <div className="flex w-full items-center gap-3 rounded-[20px] border border-white/70 bg-white/70 p-2.5 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.24)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/70">
+      <div className="flex w-full items-center gap-3 rounded-2xl border border-black/5 bg-white/60 p-2 shadow-sm backdrop-blur-xl dark:border-white/5 dark:bg-neutral-900/40">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" size={18} />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-neutral-500" size={18} />
           <input
             type="text"
-            placeholder="Search entries..."
+            placeholder="Search through your thoughts..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full rounded-xl border border-slate-200/80 bg-white/80 py-2 pl-10 pr-4 text-slate-900 placeholder:text-slate-400 focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-200 dark:border-slate-700/70 dark:bg-slate-950/70 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:ring-violet-500/20"
+            className="w-full rounded-xl bg-transparent py-2.5 pl-11 pr-4 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none dark:text-neutral-100 dark:placeholder:text-neutral-500"
           />
         </div>
-        <span className="text-sm text-slate-500 dark:text-slate-400">{filteredEntries.length} entries</span>
+        <div className="mr-2 hidden items-center gap-1.5 sm:flex">
+          <span className="flex h-6 items-center justify-center rounded-md border border-black/10 bg-black/5 px-2 text-[10px] font-semibold text-neutral-500 dark:border-white/10 dark:bg-white/5 dark:text-neutral-400">
+            {filteredEntries.length} {filteredEntries.length === 1 ? 'entry' : 'entries'}
+          </span>
+        </div>
       </div>
 
       {isLoading ? (
