@@ -28,10 +28,10 @@ export const MOOD_OPTIONS = Object.entries(MOOD_CONFIG).map(([key, value]) => ({
 }));
 
 export const STORAGE_KEYS = {
-  JOURNAL_ENTRIES: 'moodcraft_entries',
-  USER_PREFERENCES: 'moodcraft_preferences',
-  MOOD_HISTORY: 'moodcraft_history'
+  JOURNAL_ENTRIES: 'sadako_entries',
+  USER_PREFERENCES: 'sadako_preferences',
+  MOOD_HISTORY: 'sadako_history'
 };
 
-export const APP_NAME = 'AI MoodCraft';
+export const APP_NAME = 'Sadako';
 export const APP_DESCRIPTION = 'Smart journaling with AI-powered mood tracking';

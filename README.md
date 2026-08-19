@@ -1,4 +1,6 @@
-# AI MoodCraft 🧠✨
+# Sadako 🧠✨
+
+![Sadako](./public/Sadako.png)
 
 A smart journaling application with AI-powered mood tracking and sentiment analysis.
 
@@ -22,44 +24,83 @@ A smart journaling application with AI-powered mood tracking and sentiment analy
 - React Router v6
 - Lucide Icons
 - date-fns
+- Supabase (Backend/Auth)
+- Gemini AI (Insights & Analysis)
 
-## Getting Started
+## Step-by-Step Setup Guide
 
-### Prerequisites
+Follow these instructions to get Sadako running on your local machine.
 
-- Node.js 16+
+### 1. Prerequisites
+
+Before you begin, ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (Version 16 or higher)
 - npm or yarn
 
-### Installation
+### 2. Clone the Repository
 
-1. Clone the repository:
-\`\`\`bash
-git clone https://github.com/yourusername/ai-moodcraft.git
-cd ai-moodcraft
-\`\`\`
+Clone the project to your local machine and navigate into the project directory:
 
-2. Install dependencies:
-\`\`\`bash
+```bash
+git clone https://github.com/yourusername/sadako.git
+cd sadako
+```
+
+### 3. Install Dependencies
+
+Install all required npm packages:
+
+```bash
 npm install
-\`\`\`
+```
 
-3. Start the development server:
-\`\`\`bash
+### 4. Environment Configuration
+
+Sadako requires a few environment variables to connect to its backend services (Supabase and Gemini AI). 
+
+Create a `.env` file in the root directory of your project:
+
+```bash
+touch .env
+```
+
+Open the `.env` file and add the following keys. Replace the placeholder values with your actual API keys:
+
+```env
+VITE_SUPABASE_URL=your_supabase_url_here
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+VITE_GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+### 5. Start the Development Server
+
+Once your environment variables are configured, start the app in development mode:
+
+```bash
 npm run dev
-\`\`\`
+```
 
-4. Open http://localhost:5173 in your browser
+### 6. Open the App
 
-### Build for Production
+Open your browser and navigate to the local server address provided in your terminal (usually [http://localhost:5173](http://localhost:5173)). 
 
-\`\`\`bash
+## Building for Production
+
+To create a production-ready build of the application:
+
+```bash
 npm run build
+```
+
+To preview the production build locally:
+
+```bash
 npm run preview
-\`\`\`
+```
 
 ## Project Structure
 
-\`\`\`
+```
 src/
 ├── components/     # Reusable components
 │   ├── ui/        # UI primitives
@@ -73,47 +114,22 @@ src/
 ├── utils/          # Utility functions
 ├── types/          # TypeScript types
 └── ...             # Config files
-\`\`\`
-
-## Features in Detail
-
-### Journal Management
-- Create, edit, and delete entries
-- Rich text support
-- Mood selection for each entry
-- Search and filter entries
-
-### Mood Tracking
-- Select mood from 8 different emotions
-- Track mood intensity
-- View mood timeline
-- Mood statistics and trends
-
-### AI Features
-- Sentiment analysis of journal entries
-- Personalized insights and recommendations
-- Mood pattern recognition
-- Writing consistency tracking
-
-### Dashboard
-- Overview of journaling statistics
-- Recent mood timeline
-- Quick access to insights
+```
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch (\`git checkout -b feature/AmazingFeature\`)
-3. Commit your changes (\`git commit -m 'Add some AmazingFeature'\`)
-4. Push to the branch (\`git push origin feature/AmazingFeature\`)
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
 ## License
 
-MIT
+This project is licensed under the MIT License.
 
 ## Acknowledgments
 
 - Built with React and TypeScript
 - Icons by Lucide
-- Styling with Tailwind CSS# AIMoodCraft
+- Styling with Tailwind CSS
