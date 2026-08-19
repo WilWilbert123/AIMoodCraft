@@ -28,7 +28,7 @@ export const Header: React.FC<HeaderProps> = ({ isDark = false, onToggleTheme })
             <div className="rounded-full border border-black/10 bg-white p-2 shadow-lg shadow-black/10 dark:border-white/10 dark:bg-neutral-950">
               <Brain className="h-5 w-5 text-neutral-950 dark:text-white" />
             </div>
-            <span className="text-base font-semibold tracking-tight text-neutral-950 dark:text-white">AI MoodCraft</span>
+            <span className="text-base font-semibold tracking-tight text-neutral-950 dark:text-white">Sadako</span>
           </div>
 
           <nav className="hidden items-center gap-6 md:flex">

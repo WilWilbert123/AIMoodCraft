@@ -1,9 +1,9 @@
 /**
  * Returns an ID that is stable for this browser profile on this device.
  * It intentionally lives in localStorage: clearing browser site data or using
- * another browser/device creates a new, separate MoodCraft profile.
+ * another browser/device creates a new, separate Sadako profile.
  */
-const DEVICE_ID_STORAGE_KEY = 'moodcraft_device_id';
+const DEVICE_ID_STORAGE_KEY = 'sadako_device_id';
 
 export const getDeviceId = (): string => {
   const existingId = window.localStorage.getItem(DEVICE_ID_STORAGE_KEY);

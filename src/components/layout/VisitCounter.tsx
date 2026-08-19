@@ -11,7 +11,7 @@ export const VisitCounter = () => {
       if (!supabase) return;
 
       // A single browser tab session counts once, not every route change.
-      const visitRecordedKey = 'moodcraft_visit_recorded';
+      const visitRecordedKey = 'sadako_visit_recorded';
       if (!window.sessionStorage.getItem(visitRecordedKey)) {
         const { error } = await supabase.from('site_visits').insert({});
         if (!error) window.sessionStorage.setItem(visitRecordedKey, 'true');
