@@ -1,4 +1,4 @@
-# Sadako 🧠✨
+# Sadako 
 
 ![Sadako](./public/Sadako.png)
 
@@ -6,13 +6,13 @@ A smart journaling application with AI-powered mood tracking and sentiment analy
 
 ## Features
 
-- 📝 **Journal Entries**: Write and manage your daily thoughts
-- 😊 **Mood Tracking**: Log your mood with emojis and intensity
-- 🤖 **AI Insights**: Get personalized insights and recommendations
-- 📊 **Analytics**: Visualize your mood patterns and trends
-- 🔍 **Sentiment Analysis**: AI-powered text analysis
-- 📱 **Responsive**: Works on all devices
-- 💾 **Local Storage**: All data stored locally
+- **Journal Entries**: Write and manage your daily thoughts
+- **Mood Tracking**: Log your mood with emojis and intensity
+- **AI Insights**: Get personalized insights and recommendations
+- **Analytics**: Visualize your mood patterns and trends
+- **Sentiment Analysis**: AI-powered text analysis
+- **Responsive**: Works on all devices
+- **Local Storage**: All data stored locally
 
 ## Tech Stack
 
